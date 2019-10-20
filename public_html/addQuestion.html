@@ -1,0 +1,78 @@
+<html>
+
+<head>
+	<title>Add New Question</title>
+	<script src="querymy.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+	<style>
+	    .addButton input{
+	        height:115px;
+	        width:260px;
+	        color:white;
+	        background-color:black;
+	        font-style:bold;
+	        font-size:30px;
+	    }
+	</style>
+</head>
+<body>
+    <center>
+<form name="myForm" >
+    Topics:<br>
+    <select name="position" id="topics" style="font-size:16pt">
+				  <option value="java" >Java Interview Question</option>
+				  <option value="selenium">Selenium Interview Question</option>
+				  <option value="database">SQL Interview Question </option>
+				  <option value="testNG">TestNG Interview Question </option>
+				  <option value="junit">Junit Interview Question </option>
+				   <option value="maven">Maven Interview Question</option>
+				  <option value="log4j">Log4J Interview Question</option>
+				  <option value="jenkin">Jenkin Interview Question </option>
+				  <option value="collection">Collection Interview Question </option>
+				  <option value="others">Others Interview Question </option>
+				   <option value="api">API Interview Question </option>
+				  <option value="git">Git Interview Question </option>
+				  <option value="extent">Extents Report Interview Question </option>
+				  <option value="cucumber">Cucumber Interview Question </option>
+				 
+			</select>
+	<br><br><br>Question:<br>
+<textarea type="text" name="question" id="question" rows="3" cols="150"  style="font-size: 12pt"></textarea><br><br>
+Answer:<br>
+<textarea type="text" name="answer" id="answer" rows="16" cols="150" style="font-size:12pt"></textarea><br><br>
+Comments:<br>
+<textarea type="text" name="comments" id="comments" rows="2" cols="150" style="font-size:12pt"></textarea>
+<div class="addButton">
+<input type="submit" onclick="addQuestion();" value="Add"/>
+</div>
+</form>
+</center>
+<script tyep="text/javascript">
+	function addQuestion(){
+	var question=document.getElementById("question").value;
+	var answer=document.getElementById("answer").value;
+	var comments=document.getElementById("comments").value;
+	var topics=document.getElementById("topics").value;
+var dataString='question1='+question+'&answer1='+answer+'&comments1='+comments+'&topics1='+topics;
+	if(question==''||answer==''){
+ 	alert("Question or answer box can not be empty");
+ }else {
+	// AJAX code to submit form.
+$.ajax({
+type: "POST",
+url:"addQuestions.php",
+data: dataString,
+cache: false,
+success: function(html) {
+alert("New Question has been added!!!!");
+}
+});
+document.form.reset();
+}
+return false;
+ }
+</script>
+
+
+</body>
+</html>
